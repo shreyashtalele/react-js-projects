@@ -1,12 +1,27 @@
 import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 function Products() {
-  //   const { id } = useParams();
-  const { userId, postId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get("category");
+  const page = searchParams.get("page");
   return (
+    // <>
+    //   <h1>Product Details</h1>
+    //   <h3>Category : {category}</h3>
+    //   <h3>Page :{page}</h3>
+    // </>
+
     <>
-      <h1>Product Deatil</h1>
-      <h3>User Id : {userId}</h3>
-      <h3>PostId : {postId}</h3>
+      <button
+        onClick={() =>
+          setSearchParams({
+            category: "React",
+            page: "1",
+          })
+        }
+      >
+        React Books
+      </button>
     </>
   );
 }
