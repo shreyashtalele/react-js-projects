@@ -77,18 +77,26 @@ export class Service {
             console.log("Appwrite Service :: Getpost :: ", error);
         }
     }
-
     async getPosts(queries = [Query.equal("status", "active")]) {
         try {
+            console.log("Calling listDocuments...");
 
-            return await this.databases.listDocuments(
+            const response = await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectioId,
-                queries,
-            )
+                queries
+            );
+
+            console.log("Appwrite response:", response);
+
+            return response;
 
         } catch (error) {
-            console.log("Appwrite Service :: getposts :: ", error);
+            console.log("GET POSTS ERROR");
+            console.log(error);
+            console.log(error.code);
+            console.log(error.message);
+
             return false;
         }
     }
@@ -128,4 +136,4 @@ export class Service {
     }
 }
 const service = new Service();
-export default Service
+export default service

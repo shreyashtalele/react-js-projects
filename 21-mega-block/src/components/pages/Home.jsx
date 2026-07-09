@@ -6,6 +6,7 @@ function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    console.log("Home component mounted");
     appwriteService.getPosts().then((posts) => {
       if (posts) {
         setPosts(posts.documents);
